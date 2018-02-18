@@ -23,5 +23,12 @@
     <string name="comentario">Escrever um comentário (opcional)</string>
     <string name="btn_enviar">Enviar</string>
     <string name="avaliar_comentarios">Comentários:</string>
+    <string name="title_activity_lista">ListaActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_agendar">Agendar</string>
+    <string name="action_avaliar">Avaliar</string>
 
 </resources>
