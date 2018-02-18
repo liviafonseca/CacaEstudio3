@@ -10,11 +10,17 @@ public class Estudio {
     private String nome;
     private String endereco;
     private String preco;
+    private String hora;
 
     public Estudio(String nome, String endereco, String preco) {
         this.nome = nome;
         this.endereco = endereco;
         this.preco = preco;
+    }
+
+    public Estudio(String nome, String hora) {
+        this.nome = nome;
+        this.hora = hora;
     }
 
     public int getId() {
@@ -49,5 +55,11 @@ public class Estudio {
         this.preco = preco;
     }
 
+    public String getHora() {
+        return hora;
+    }
 
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
 }
