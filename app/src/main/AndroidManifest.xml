@@ -9,35 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity
-            android:name=".PagamentoActivity"
-            android:label="@string/tela_pagamento">
-        </activity>
-
-        <activity
-            android:name=".AgendadosActivity"
-            android:label="@string/tela_agendados">
-
-        </activity>
-
-        <activity
-            android:name=".AvaliarActivity"
-            android:label="@string/tela_avaliar">
-
-        </activity>
-
-        <activity
-            android:name=".ListaActivity"
-            android:label="@string/tela_lista"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".PagamentoActivity" />
+        <activity android:name=".AgendadosActivity" />
+        <activity android:name=".AvaliarActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".CadastrarActivity" />
+        <activity android:name=".AgendarActivity"></activity>
     </application>
 
 </manifest>

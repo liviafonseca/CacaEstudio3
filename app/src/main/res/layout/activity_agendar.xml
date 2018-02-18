@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="br.com.pos.cacaestudio.AgendarActivity">
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0.5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0.5dp"
+            android:text="@string/text_hora_disp" />
+
+        <CheckBox
+            android:id="@+id/id_ck_08h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_8h" />
+
+        <CheckBox
+            android:id="@+id/id_ck_09h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_9h" />
+
+        <CheckBox
+            android:id="@+id/id_ck_10h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_10h" />
+
+
+        <CheckBox
+            android:id="@+id/id_ck_11h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_11h" />
+
+        <CheckBox
+            android:id="@+id/id_ck_12h"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ck_12h" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/btn_agendar"
+
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
