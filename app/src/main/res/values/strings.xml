@@ -44,4 +44,27 @@
     <string name="about_dialog_tittle">Caça Estúdio</string>
     <string name="ok">OK</string>
 
+    <!-- String da tela de Login -->
+    <string name="ht_login">Login</string>
+    <string name="ht_senha">Senha</string>
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+
+    <!-- String da tela de Cadastro -->
+    <string name="ht_nome">Nome</string>
+    <string name="ht_telefone">(99)99999 9999</string>
+    <string name="ht_email">exemplo@gmail.com</string>
+    <string name="ht_confsenha">Confirmar senha</string>
+    <string name="btn_salvar">Salvar</string>
+
+    <!-- String da tela de Agendamento -->
+    <string name="ck_8h">08:00</string>
+    <string name="ck_9h">09:00</string>
+    <string name="ck_10h">10:00</string>
+    <string name="ck_11h">11:00</string>
+    <string name="ck_12h">12:00</string>
+    <string name="text_hora_disp">Horários disponíveis:</string>
+    <string name="btn_agendar">Agendar</string>
+
+
 </resources>
