@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.pos.cacaestudio.adapter.EstudiosAdapter;
+import br.com.pos.cacaestudio.fragments.AboutDialog;
 import br.com.pos.cacaestudio.modelo.Estudio;
 
 public class ListaActivity extends AppCompatActivity
@@ -105,7 +106,8 @@ public class ListaActivity extends AppCompatActivity
             Intent intent = new Intent(ListaActivity.this, AgendadosActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_sobre) {
-
+            AboutDialog.showAbout(getSupportFragmentManager());
+            return true;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

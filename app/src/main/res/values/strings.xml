@@ -29,7 +29,19 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- para o menu de contexto da Tela com lista de Estudios -->
     <string name="action_agendar">Agendar</string>
     <string name="action_avaliar">Avaliar</string>
+
+    <!-- texto da caixa de diálogo [[[Sobre]]] -->
+    <string name="about_dialog_text">
+        <![CDATA[
+           O aplicativo <b>Caça Estúdios</b>
+            foi desenvolvido para facilitar a busca por estúdios
+            de músicas na cidade de Manauas.
+        ]]>
+    </string>
+    <string name="about_dialog_tittle">Caça Estúdio</string>
+    <string name="ok">OK</string>
 
 </resources>
