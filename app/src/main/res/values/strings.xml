@@ -4,6 +4,7 @@
     <string name="tela_pagamento">Forma de Pagamento</string>
     <string name="tela_agendados">Estúdios Agendados</string>
     <string name="tela_avaliar">Avaliar</string>
+    <string name="tela_lista">Estúdios</string>
 
 
     <!-- Strings da Tela de Pagamento -->
