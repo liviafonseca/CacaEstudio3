@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.pos.cacaestudio.LoginActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/palheta_icone"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/text_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ht_login"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+
+        />
+    <EditText
+        android:id="@+id/text_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ht_senha"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:inputType="textPassword"
+
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/id_cadastrar"
+            android:layout_width="180sp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cadastrar"
+            android:layout_marginLeft="10dp"
+            />
+        <Button
+            android:id="@+id/id_entrar"
+            android:layout_width="180sp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_entrar"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/id_log_google"
+        android:layout_width="350sp"
+        android:layout_height="100sp"
+        android:src="@drawable/sign_in_google"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        />
+</LinearLayout>
