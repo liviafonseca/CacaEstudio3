@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+        /*lalalala*/
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
