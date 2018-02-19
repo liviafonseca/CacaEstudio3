@@ -75,6 +75,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/pagamento_btn_concluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Concluir"

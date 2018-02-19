@@ -31,7 +31,7 @@ public class ListaActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 
         //Lista de Estúdios
         Estudio estudio1 = new Estudio("Estúdio Tupira","Rua YYY, Santo Agostinho", "25");
@@ -69,7 +69,8 @@ public class ListaActivity extends AppCompatActivity
         itemAgendar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Toast.makeText(ListaActivity.this,"Cade a tela agendar?", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ListaActivity.this, AgendarActivity.class);
+                startActivity(intent);
                 return false;
             }
         });
@@ -101,7 +102,8 @@ public class ListaActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dados) {
-            //Intent intent = new Intent(ListaActivity.this,A)
+            Intent intent = new Intent(ListaActivity.this,CadastrarActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_agendados) {
             Intent intent = new Intent(ListaActivity.this, AgendadosActivity.class);
             startActivity(intent);
