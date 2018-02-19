@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText()))+
-                        "logado com sucesso"
+                        " logado com sucesso"
                         ,Toast.LENGTH_LONG).show();
                 Intent it = new Intent(LoginActivity.this, ListaActivity.class);
                 startActivity (it);

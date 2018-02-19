@@ -58,7 +58,7 @@ public class AgendadosActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(AgendadosActivity.this, "Esta ação no futuro fará com que" +
-                                "o agendamento seja cancelado", Toast.LENGTH_SHORT).show();
+                                " o agendamento seja cancelado", Toast.LENGTH_SHORT).show();
                     }
                 });
 

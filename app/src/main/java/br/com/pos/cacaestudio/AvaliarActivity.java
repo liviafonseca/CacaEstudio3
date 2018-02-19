@@ -24,8 +24,8 @@ public class AvaliarActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AvaliarActivity.this, "Futuramente este ação irá" +
-                        "acrescentar um novo comentrário",
+                Toast.makeText(AvaliarActivity.this, "Futuramente esta ação irá" +
+                        " acrescentar um novo comentrário",
                         Toast.LENGTH_LONG).show();
 
             }
