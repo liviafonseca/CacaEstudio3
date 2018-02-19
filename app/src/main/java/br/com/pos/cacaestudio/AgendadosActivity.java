@@ -4,11 +4,14 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,10 +42,28 @@ public class AgendadosActivity extends AppCompatActivity {
         estudios.add(estudio2);
 
         //Adapter da Lista
-        ListView listaEstudios = findViewById(R.id.lista_estudios_agendados);
-        AgendadosAdapter adapter = new AgendadosAdapter(this,estudios);
-        listaEstudios.setAdapter(adapter);
+        ListView listaEstudiosView = findViewById(R.id.lista_estudios_agendados);
+        final AgendadosAdapter adapter = new AgendadosAdapter(this,estudios);
+        listaEstudiosView.setAdapter(adapter);
 
+
+
+        listaEstudiosView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //View v = adapter.getView(position, view, parent);
+
+                ImageView lixeira = view.findViewById(R.id.agendados_lixeira);
+                lixeira.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AgendadosActivity.this, "Esta ação no futuro fará com que" +
+                                "o agendamento seja cancelado", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
 
     }
 
@@ -59,7 +80,7 @@ public class AgendadosActivity extends AppCompatActivity {
         return true;
     }
 
-    //Back na navigationsBar
+    //Back na navigationBar
     @Override
     public void onBackPressed(){ //Botão BACK padrão do android
         startActivity(new Intent(this, ListaActivity.class)); //O efeito ao ser pressionado do botão (no caso abre a activity)
