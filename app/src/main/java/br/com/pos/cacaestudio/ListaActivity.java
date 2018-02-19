@@ -113,6 +113,7 @@ public class ListaActivity extends AppCompatActivity
 
         if (id == R.id.nav_dados) {
             Intent intent = new Intent(ListaActivity.this,CadastrarActivity.class);
+            intent.putExtra("origem","main");
             startActivity(intent);
         } else if (id == R.id.nav_agendados) {
             Intent intent = new Intent(ListaActivity.this, AgendadosActivity.class);
