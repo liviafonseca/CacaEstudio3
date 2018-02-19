@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CacaEstudio3.iml" filepath="$PROJECT_DIR$/CacaEstudio3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CacaEstudio.iml" filepath="$PROJECT_DIR$/CacaEstudio.iml" />
+      <module fileurl="file://C:\Users\livia.DESKTOP-SVO64QL.000\Desktop\trabalho-pos\CacaEstudio\CacaEstudio3.iml" filepath="C:\Users\livia.DESKTOP-SVO64QL.000\Desktop\trabalho-pos\CacaEstudio\CacaEstudio3.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
