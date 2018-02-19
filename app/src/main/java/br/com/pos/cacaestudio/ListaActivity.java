@@ -36,6 +36,7 @@ public class ListaActivity extends AppCompatActivity
   //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lista);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //Lista de Estúdios
         Estudio estudio1 = new Estudio("Estúdio Tupira","Rua YYY, Santo Agostinho", "25");
@@ -53,13 +54,7 @@ public class ListaActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
-            public void onDrawerOpened(View drawerView){
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); // Para o layout preencher toda tela do cel (remover a barra de tit.)
-                getSupportActionBar().hide();
-            }
-            public void onDrawerClosed(View drawerView){
-                getSupportActionBar().show();
-            }
+
         };
         drawer.addDrawerListener(toggle);
         toggle.syncState();

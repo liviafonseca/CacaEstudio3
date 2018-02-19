@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".CadastrarActivity" />
         <activity android:name=".AgendarActivity" />
-        <activity android:name=".ListaActivity"/>
+        <activity android:name=".ListaActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
