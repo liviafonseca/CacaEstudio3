@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="br.com.pos.cacaestudio.LoginActivity"
     android:orientation="vertical">
 
@@ -23,6 +24,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
+        android:background="#FFFFFF"
 
         />
     <EditText
@@ -35,6 +37,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:inputType="textPassword"
+        android:background="#FFFFFF"
 
         />
     <RelativeLayout
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_cadastrar"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             />
         <Button
             android:id="@+id/id_entrar"
@@ -55,6 +59,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
             />
 
     </RelativeLayout>
