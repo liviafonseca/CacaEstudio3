@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         entrar = (Button)findViewById(R.id.id_entrar);
         cadastrar = (Button)findViewById(R.id.id_cadastrar);
         login_google = (ImageView)findViewById(R.id.id_log_google);
