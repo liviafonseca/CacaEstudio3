@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="br.com.pos.cacaestudio.AgendadosActivity"
     android:layout_marginTop="20dp"
     android:layout_marginLeft="16dp"
@@ -19,20 +19,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="Nome Estúdio"/>
         <TextView
             android:id="@+id/agendados_hr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:text="horário"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/agendados_btn_cancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/agendados_lixeira"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/recycle_bin"
         android:layout_alignParentRight="true"
-        android:text="@string/btn_cancelar"/>
+        android:layout_marginTop="20dp"
+        />
 
 </RelativeLayout>
