@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(LoginActivity.this, CadastrarActivity.class);
+                it.putExtra("origem","login");
                 startActivity (it);
             }
 

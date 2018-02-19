@@ -58,7 +58,7 @@
 
         />
     <Button
-        android:id="@+id/id_salvar"
+        android:id="@+id/cadastrar_btn_salvar"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_salvar"
