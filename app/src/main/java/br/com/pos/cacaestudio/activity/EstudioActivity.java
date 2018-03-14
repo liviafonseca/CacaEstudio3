@@ -20,14 +20,8 @@ public class EstudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estudio);
 
-        EstudioDAO dao =  new EstudioDAO(this);
-        List<Estudio> lista = dao.listar();
-        int c= 0;
-        while(c<lista.size()){
-            Estudio estudio = lista.get(c);
-            Log.d("estudio: ", String.valueOf(estudio));
-            c++;
-        }
+        EstudioDAO dao = new EstudioDAO(this);
+        dao.popularTabela();
 
     }
 
@@ -57,4 +51,5 @@ public class EstudioActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+
 }

@@ -11,6 +11,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pos.cacaestudio.helper.EstudioHelper;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 /**
@@ -44,6 +45,20 @@ public class EstudioDAO extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    public void popularTabela(){
+        List<Estudio> listaDeEstudios = new ArrayList<>();
+        EstudioHelper helper = new EstudioHelper();
+
+        listaDeEstudios = listarEstudios();
+        if(listaDeEstudios.isEmpty()){
+            listaDeEstudios = helper.gerarListaDeEstudios();
+            for(Estudio e : listaDeEstudios) {
+                salvarEstudio(e);
+            }
+        }
+
+    }
+
     private void salvarEstudio(Estudio estudio) {
         ContentValues values = new ContentValues();
 
@@ -59,7 +74,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
     public List<Estudio> listarEstudios(){
         List<Estudio> lista = new ArrayList<>();
 
-        String sql="Select * from " + TABELA + "order by name";
+        String sql="Select * from " + TABELA + " order by nome";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
         try{
             while(cursor.moveToNext()){
@@ -81,6 +96,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
         }
         return lista;
     }
+
 
 }
 
