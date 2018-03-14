@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp">
-
-        <TextView
-            android:id="@+id/nota"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/estrela"
-            android:layout_marginEnd="15dp"
-            android:layout_toStartOf="@+id/estrela"
-            android:text="4,5"
-            android:textSize="40sp"
-            android:gravity="center_vertical"/>
-
-        <ImageView
-            android:id="@+id/estrela"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/rate"
-            android:layout_alignParentRight="true"/>
-
-    </RelativeLayout>
 
     <ImageView
         android:id="@+id/img_estudio"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/palheta_icone"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/palheta_icone_invertido"
         android:layout_gravity="center"/>
     <TextView
         android:id="@+id/estudio_nome"
@@ -73,6 +46,72 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="16dp"
         android:text="R$30 / hora"/>
+
+
+
+    <!-- Comentários anteriores -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/avaliar_comentarios"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/estrela"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/estrela"
+            android:text="4,5"
+            android:textSize="40sp"
+            android:gravity="center_vertical"/>
+
+        <ImageView
+            android:id="@+id/estrela"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/rate"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:text="Fulano" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp"
+        android:text="Estúdio muito bom. Ótima acústica"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:text="Beltrano" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp"
+        android:text="Ótima localização"/>
 
 
 

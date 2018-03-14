@@ -1,4 +1,4 @@
-package br.com.pos.cacaestudio;
+package br.com.pos.cacaestudio.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import br.com.pos.cacaestudio.R;
 
 public class AvaliarActivity extends AppCompatActivity {
 

@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import br.com.pos.cacaestudio.R;
-import br.com.pos.cacaestudio.modelo.Estudio;
+import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 /**
  * Created by livia on 17/02/2018.
@@ -59,7 +58,7 @@ public class AgendadosAdapter extends BaseAdapter {
         TextView campoHora = view.findViewById(R.id.agendados_hr);
 
         campoNome.setText(estudio.getNome());
-        campoHora.setText(estudio.getHora());
+        campoHora.setText(" / hora");
 
         return view;
     }

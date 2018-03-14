@@ -1,12 +1,12 @@
-package br.com.pos.cacaestudio;
+package br.com.pos.cacaestudio.activity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import br.com.pos.cacaestudio.R;
 
 public class CadastrarActivity extends AppCompatActivity {
 

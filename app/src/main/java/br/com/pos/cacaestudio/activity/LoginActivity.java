@@ -1,4 +1,4 @@
-package br.com.pos.cacaestudio;
+package br.com.pos.cacaestudio.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import br.com.pos.cacaestudio.R;
 
 public class LoginActivity extends AppCompatActivity {
     private Button entrar;

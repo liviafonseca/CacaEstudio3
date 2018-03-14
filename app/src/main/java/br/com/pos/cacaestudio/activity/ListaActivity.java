@@ -1,6 +1,5 @@
-package br.com.pos.cacaestudio;
+package br.com.pos.cacaestudio.activity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,21 +9,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ListView;
-import android.widget.SlidingDrawer;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.EstudiosAdapter;
 import br.com.pos.cacaestudio.fragments.AboutDialog;
-import br.com.pos.cacaestudio.modelo.Estudio;
+import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 public class ListaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
