@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp">
+
+        <TextView
+            android:id="@+id/nota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/estrela"
+            android:layout_marginEnd="15dp"
+            android:layout_toStartOf="@+id/estrela"
+            android:text="4,5"
+            android:textSize="40sp"
+            android:gravity="center_vertical"/>
+
+        <ImageView
+            android:id="@+id/estrela"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/rate"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_estudio"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/palheta_icone"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/estudio_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="Nome do Estúdio"/>
+
+    <TextView
+        android:id="@+id/estudio_endereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:text="Rua A, conjunto casto Branco"/>
+
+    <TextView
+        android:id="@+id/estudio_telefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:text="9 9999 9999"/>
+    <TextView
+        android:id="@+id/estudio_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:text="R$30 / hora"/>
+
+
+
+</LinearLayout>

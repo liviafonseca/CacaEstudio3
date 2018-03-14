@@ -9,22 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".PagamentoActivity" />
         <activity android:name=".AgendadosActivity" />
         <activity android:name=".AvaliarActivity" />
         <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".CadastrarActivity" />
+        <activity android:name=".AgendarActivity" />
+        <activity
+            android:name=".ListaActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EstudioActivity"
+            android:label="@string/tela_estudio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastrarActivity" />
-        <activity android:name=".AgendarActivity" />
-        <activity android:name=".ListaActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
     </application>
 
 </manifest>
