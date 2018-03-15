@@ -10,13 +10,13 @@
 
     <item
         android:id="@+id/menu_agendar"
-        android:icon="@drawable/ic_schedule_white_48dp"
+        android:icon="@drawable/ic_date_range_white_48dp"
         app:showAsAction="ifRoom"
         android:title="@string/menu_agendar"/>
 
     <item
         android:id="@+id/menu_avaliar"
-        android:icon="@drawable/ic_create_white_48dp"
+        android:icon="@drawable/ic_star_white_48dp"
         app:showAsAction="ifRoom"
         android:title="@string/menu_avaliar"/>
 
