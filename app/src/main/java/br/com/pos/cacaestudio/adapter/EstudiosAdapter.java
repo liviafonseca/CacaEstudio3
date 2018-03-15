@@ -60,7 +60,7 @@ public class EstudiosAdapter extends BaseAdapter {
 
         campoNome.setText(estudio.getNome());
         campoEndereco.setText(estudio.getEndereco());
-        campoPreco.setText((int) estudio.getPreco());
+        campoPreco.setText(""+estudio.getPreco());
 
         return view;
     }

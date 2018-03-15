@@ -19,6 +19,7 @@ import java.util.List;
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.EstudiosAdapter;
 import br.com.pos.cacaestudio.fragments.AboutDialog;
+import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 public class ListaActivity extends AppCompatActivity
@@ -34,11 +35,9 @@ public class ListaActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Lista de Estúdios
-        Estudio estudio1 = new Estudio("Estúdio Tupira","Rua YYY, Santo Agostinho", "25");
-        Estudio estudio2 = new Estudio("Estúdio Sonora", "Rua XXX, Centro", "30");
-        List<Estudio> estudios = new ArrayList<Estudio>();
-        estudios.add(estudio1);
-        estudios.add(estudio2);
+        EstudioDAO dao = new EstudioDAO(this);
+        List<Estudio> estudios = new ArrayList<>();
+        estudios = dao.listarEstudios();
 
         //Adapter da Lista
         ListView listaEstudios = findViewById(R.id.lista_estudios);

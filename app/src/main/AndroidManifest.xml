@@ -14,6 +14,12 @@
         <activity android:name=".activity.AvaliarActivity" />
         <activity android:name=".activity.LoginActivity">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity android:name=".activity.CadastrarActivity" />
         <activity android:name=".activity.AgendarActivity" />
@@ -21,13 +27,8 @@
             android:name=".activity.ListaActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.EstudioActivity"
-            android:label="@string/tela_estudio">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/tela_estudio"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
