@@ -1,11 +1,13 @@
 package br.com.pos.cacaestudio.helper;
 
 
+import android.content.Context;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pos.cacaestudio.activity.EstudioActivity;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 /**
@@ -13,6 +15,8 @@ import br.com.pos.cacaestudio.modelo.entity.Estudio;
  */
 
 public class EstudioHelper {
+
+
 
     //o método faz 'as vezes' de um preenchimento através de um webService
     public List<Estudio> gerarListaDeEstudios(){
@@ -94,7 +98,7 @@ public class EstudioHelper {
         estudio = new Estudio();
         estudio.setNome("Amazon Music Studio");
         estudio.setEndereco("R. São Pedro, 50 - Petrópolis, Manaus - AM, 69079-420");
-        estudio.setTelefone("R. São Pedro, 50 - Petrópolis, Manaus - AM, 69079-420");
+        estudio.setTelefone("(92)98751-5687");
         estudio.setPreco(45);
         estudio.setAvaliacao(4.8);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipNdJbVgzrRhD_w1XXBMCGJh2jsbq31PesASnBSq=w90-h90-n-k-no");

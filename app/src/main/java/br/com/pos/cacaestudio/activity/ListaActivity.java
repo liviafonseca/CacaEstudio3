@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,9 @@ import br.com.pos.cacaestudio.modelo.entity.Estudio;
 public class ListaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private List<Estudio> estudios;
+    private Estudio estudioSelecionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,13 +41,26 @@ public class ListaActivity extends AppCompatActivity
 
         //Lista de Estúdios
         EstudioDAO dao = new EstudioDAO(this);
-        List<Estudio> estudios = new ArrayList<>();
+        dao.popularTabela(); //popular os estudios, se tabela estiver vazia.
         estudios = dao.listarEstudios();
+        dao.close();
 
         //Adapter da Lista
-        ListView listaEstudios = findViewById(R.id.lista_estudios);
+        final ListView listaEstudiosView = findViewById(R.id.lista_estudios);
         EstudiosAdapter adapter = new EstudiosAdapter(this,estudios);
-        listaEstudios.setAdapter(adapter);
+        listaEstudiosView.setAdapter(adapter);
+
+        //devolve o item da lista que foi clicado
+        listaEstudiosView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                estudioSelecionado = estudios.get(position);
+                Intent intent = new Intent(ListaActivity.this, EstudioActivity.class);
+                intent.putExtra("estudio_selecionado", estudioSelecionado);
+                startActivity(intent);
+            }
+        });
+
 
         //View
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -56,38 +74,9 @@ public class ListaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //para criar um menu de contexto
-        registerForContextMenu(listaEstudios);
+     }
 
 
-    }
-
-
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-        MenuItem itemAgendar = menu.add("Agendar");
-        MenuItem itemAvaliar = menu.add("Avaliar");
-
-        itemAgendar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(ListaActivity.this, AgendarActivity.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-
-        itemAvaliar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(ListaActivity.this, AvaliarActivity.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-    }
 
     @Override
     public void onBackPressed() {

@@ -1,10 +1,12 @@
 package br.com.pos.cacaestudio.modelo.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by livia on 17/02/2018.
  */
 
-public class Estudio {
+public class Estudio implements Serializable {
 
     private int id;
     private String nome;
