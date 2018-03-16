@@ -3,6 +3,7 @@ package br.com.pos.cacaestudio.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,13 +11,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import br.com.pos.cacaestudio.R;
+import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
+import br.com.pos.cacaestudio.modelo.dao.UsuarioDAO;
+import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class LoginActivity extends AppCompatActivity {
     private Button entrar;
     private Button cadastrar;
-    private ImageView login_google;
     private EditText login;
     private EditText senha;
+    private Usuario usuario;
 
 
     @Override
@@ -26,17 +30,30 @@ public class LoginActivity extends AppCompatActivity {
 
         entrar = (Button)findViewById(R.id.id_entrar);
         cadastrar = (Button)findViewById(R.id.id_cadastrar);
-        login_google = (ImageView)findViewById(R.id.id_log_google);
         login = (EditText)findViewById(R.id.text_login);
         senha = (EditText)findViewById(R.id.text_senha);
 
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /** ESTE USUARIODAO DEVERÁ SER REALOCADO FUTURAMENTE
+                 COLOQUEI AQUI TEMPORARIAMENTE PARA TESTAR OUTRAS FUNCIONALIDADE ENQUANTO A
+                 FUNCIONALIDADE DE LOGIN NÃO ESTÁ IMPLEMENTADA **/
+                UsuarioDAO dao = new UsuarioDAO(LoginActivity.this);
+                usuario = dao.getUsuarioById("1");
+                if(usuario == null){
+                    usuario = new Usuario("Livia", "senha","999","e@c.com");
+                    dao.criarUsuario(usuario);
+                    usuario = dao.getUsuarioById("1");
+                }
+                dao.close();
+
                 Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText()))+
                         " logado com sucesso"
                         ,Toast.LENGTH_LONG).show();
                 Intent it = new Intent(LoginActivity.this, ListaActivity.class);
+                it.putExtra("usuario", usuario);
+                Log.e("user loginActivity: ", ""+usuario.getNome());
                 startActivity (it);
             }
 
@@ -50,15 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity (it);
             }
 
-        });
-        login_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "Usuário Google logado com sucesso"
-                        ,Toast.LENGTH_LONG).show();
-                Intent it = new Intent(LoginActivity.this, ListaActivity.class);
-                startActivity (it);
-            }
         });
 
     }}

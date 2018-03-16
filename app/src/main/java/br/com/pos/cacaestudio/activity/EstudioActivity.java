@@ -17,12 +17,14 @@ import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 public class EstudioActivity extends AppCompatActivity {
 
+    private Estudio estudio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estudio);
 
-        Estudio estudio = (Estudio) getIntent().getSerializableExtra("estudio_selecionado");
+        estudio = (Estudio) getIntent().getSerializableExtra("estudio_selecionado");
 
         TextView campoNome = findViewById(R.id.estudio_nome);
         TextView campoEndereco = findViewById(R.id.estudio_endereco);
@@ -60,6 +62,7 @@ public class EstudioActivity extends AppCompatActivity {
                 break;
             case R.id.menu_avaliar:
                 intent = new Intent(this, AvaliarActivity.class);
+                intent.putExtra("estudio", estudio);
                 startActivity(intent);
                  break;
         }

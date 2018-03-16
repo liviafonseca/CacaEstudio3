@@ -8,14 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.pos.cacaestudio.R;
@@ -23,6 +21,7 @@ import br.com.pos.cacaestudio.adapter.EstudiosAdapter;
 import br.com.pos.cacaestudio.fragments.AboutDialog;
 import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
+import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class ListaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,12 +35,11 @@ public class ListaActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
   //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_lista);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //Lista de Estúdios
         EstudioDAO dao = new EstudioDAO(this);
-        dao.popularTabela(); //popular os estudios, se tabela estiver vazia.
         estudios = dao.listarEstudios();
         dao.close();
 
@@ -57,6 +55,9 @@ public class ListaActivity extends AppCompatActivity
                 estudioSelecionado = estudios.get(position);
                 Intent intent = new Intent(ListaActivity.this, EstudioActivity.class);
                 intent.putExtra("estudio_selecionado", estudioSelecionado);
+                Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+                intent.putExtra("usuario", usuario);
+                Log.e("user listaActivity: ", ""+usuario.getNome());
                 startActivity(intent);
             }
         });
@@ -106,7 +107,7 @@ public class ListaActivity extends AppCompatActivity
             return true;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
