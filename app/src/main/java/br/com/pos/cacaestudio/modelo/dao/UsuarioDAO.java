@@ -28,18 +28,20 @@ public class UsuarioDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        Log.i("entrou no metodo", "entrou no metodo onCreate do UsuarioDAO");
-        String sql="CREATE TABLE "+TABELA+" (id INTEGER PRIMARY KEY, nome TEXT, senha TEXT, " +
+        Log.e("USUARIODAO", "entrou no metodo onCreate do UsuarioDAO");
+
+        String sql="CREATE TABLE "+"usuario"+" (id INTEGER PRIMARY KEY, nome TEXT, senha TEXT, " +
                 "telefone TEXT, email TEXT);";
         db.execSQL(sql);
 
-        Log.e("sql usuario: ", sql);
-
-         sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
+        sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
                 "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
         db.execSQL(sql);
 
-        Log.e("sql estudio", sql);
+        sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, " +
+                "FOREIGN KEY (id_usuario, id_estudio) REFERENCES (usuario, estudio), " +
+                "comentario TEXT ) ";
+        db.execSQL(sql);
 
     }
 
@@ -79,6 +81,11 @@ public class UsuarioDAO extends SQLiteOpenHelper {
        }
 
        return  usuario;
+    }
+
+    //apagar isso depois
+    public String teste(){
+        return "teste";
     }
 
 

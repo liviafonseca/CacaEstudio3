@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         entrar = (Button)findViewById(R.id.id_entrar);
         cadastrar = (Button)findViewById(R.id.id_cadastrar);
         login = (EditText)findViewById(R.id.text_login);
@@ -36,17 +38,14 @@ public class LoginActivity extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /** ESTE USUARIODAO DEVERÁ SER REALOCADO FUTURAMENTE
-                 COLOQUEI AQUI TEMPORARIAMENTE PARA TESTAR OUTRAS FUNCIONALIDADE ENQUANTO A
-                 FUNCIONALIDADE DE LOGIN NÃO ESTÁ IMPLEMENTADA **/
+
+                //PARA TESTES
+                usuario = new Usuario(1, "Livia", "senha","999","e@c.com");
+                //chamar o DAO para criar as tabelas.
                 UsuarioDAO dao = new UsuarioDAO(LoginActivity.this);
-                usuario = dao.getUsuarioById("1");
-                if(usuario == null){
-                    usuario = new Usuario("Livia", "senha","999","e@c.com");
-                    dao.criarUsuario(usuario);
-                    usuario = dao.getUsuarioById("1");
-                }
+                Log.e("teste", ""+dao.teste());
                 dao.close();
+
 
                 Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText()))+
                         " logado com sucesso"

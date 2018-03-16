@@ -32,9 +32,25 @@ public class EstudioDAO extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.e("entrou no metodo","entrou no metodo onCreate do EstudioDAO");
-        String sql = "CREATE TABLE " + TABELA + " (id INTEGER PRIMARY KEY, nome TEXT, " +
+        String sql1 = "CREATE TABLE " + TABELA + " (id INTEGER PRIMARY KEY, nome TEXT, " +
                 "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
-       // db.execSQL(sql);
+        //db.execSQL(sql);
+
+        //----------------------------------------------------------------------------
+
+        String sql="CREATE TABLE "+"usuario"+" (id INTEGER PRIMARY KEY, nome TEXT, senha TEXT, " +
+                "telefone TEXT, email TEXT);";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
+                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
+        db.execSQL(sql);
+
+        sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, id_usuario INTEGER REFERENCES usuario(id)," +
+                " id_estudio INTEGER REFERENCES estudio(id)," +
+                " comentario TEXT ); ";
+
+        db.execSQL(sql);
     }
 
 
@@ -71,6 +87,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
 
         List<Estudio> lista = new ArrayList<>();
 
+        popularTabela();
 
         String sql="Select * from " + TABELA + " order by nome";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);

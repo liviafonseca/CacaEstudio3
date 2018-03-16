@@ -41,7 +41,7 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         String sql="CREATE TABLE "+TABELA+" (id INTEGER PRIMARY KEY, " +
                 "FOREIGN KEY (id_usuario, id_estudio) REFERENCES (usuario, estudio), " +
                 "comentario TEXT ) ";
-        db.execSQL(sql);
+      //  db.execSQL(sql);
 
     }
 
@@ -53,10 +53,12 @@ public class ComentarioDAO extends SQLiteOpenHelper {
     }
 
     public void criarComentario(Comentario comentario){
+
         ContentValues values = new ContentValues();
-        values.put("id_usuario", comentario.getUsuario().getId());
+
         values.put("id_estudio", comentario.getEstudio().getId());
         values.put("comentario", comentario.getComentario());
+        values.put("id_usuario", comentario.getUsuario().getId());
         getWritableDatabase().insert(TABELA, null, values);
     }
 

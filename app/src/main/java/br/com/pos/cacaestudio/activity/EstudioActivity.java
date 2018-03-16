@@ -14,10 +14,12 @@ import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.helper.EstudioHelper;
 import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
+import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class EstudioActivity extends AppCompatActivity {
 
     private Estudio estudio;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class EstudioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_estudio);
 
         estudio = (Estudio) getIntent().getSerializableExtra("estudio_selecionado");
+        usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        Log.e("user estudioActivity: ", ""+usuario.getNome());
 
         TextView campoNome = findViewById(R.id.estudio_nome);
         TextView campoEndereco = findViewById(R.id.estudio_endereco);
@@ -63,6 +67,7 @@ public class EstudioActivity extends AppCompatActivity {
             case R.id.menu_avaliar:
                 intent = new Intent(this, AvaliarActivity.class);
                 intent.putExtra("estudio", estudio);
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
                  break;
         }
