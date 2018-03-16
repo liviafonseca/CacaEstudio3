@@ -62,12 +62,12 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         getWritableDatabase().insert(TABELA, null, values);
     }
 
-    public List<Comentario> listarCometarios(){
+    public List<Comentario> listarCometarios(Usuario usuario, Estudio estudio){
         List<Comentario> lista = new ArrayList<>();
-        Usuario usuario;
-        Estudio estudio;
-        String sql="SELECT * FROM "+TABELA;
-        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+
+        String sql="SELECT * FROM "+TABELA+" WHERE id_usuario = ? AND id_estudio = ?;";
+        String args[] = {String.valueOf(usuario.getId()), String.valueOf(estudio.getId())};
+        Cursor cursor = getReadableDatabase().rawQuery(sql, args);
         try{
             while(cursor.moveToNext()){
                 Comentario comentario = new Comentario();

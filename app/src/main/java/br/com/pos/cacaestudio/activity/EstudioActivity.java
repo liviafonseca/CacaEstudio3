@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import br.com.pos.cacaestudio.R;
+import br.com.pos.cacaestudio.adapter.ComentariosAdapater;
 import br.com.pos.cacaestudio.helper.EstudioHelper;
+import br.com.pos.cacaestudio.modelo.dao.ComentarioDAO;
 import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
+import br.com.pos.cacaestudio.modelo.entity.Comentario;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
@@ -41,6 +45,17 @@ public class EstudioActivity extends AppCompatActivity {
         campoTelefone.setText(estudio.getTelefone());
         campoPreco.setText("R$"+(int)estudio.getPreco() + " / hora");
         campoNota.setText(""+estudio.getAvaliacao());
+
+        //Pegar lista de comentários
+        ComentarioDAO comentarioDAO = new ComentarioDAO(this);
+        List<Comentario> comentarios = comentarioDAO.listarCometarios(usuario, estudio);
+
+        //Adapter da lista de comentários
+        ListView lvComentarios = findViewById(R.id.lv_lista_comentarios);
+        ComentariosAdapater adapater = new ComentariosAdapater(this, comentarios);
+        lvComentarios.setAdapter(adapater);
+
+
 
 
     }

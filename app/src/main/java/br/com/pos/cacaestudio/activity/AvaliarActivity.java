@@ -66,6 +66,11 @@ public class AvaliarActivity extends AppCompatActivity {
                 dao.criarComentario(comentario);
                 dao.close();
 
+                Intent intent = new Intent(AvaliarActivity.this, EstudioActivity.class);
+                intent.putExtra("estudio_selecionado", estudio);
+                intent.putExtra("usuario", usuario);
+                startActivity(intent);
+
             }
         });
     }
