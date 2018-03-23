@@ -10,6 +10,7 @@ public class Comentario {
     private Usuario usuario;
     private Estudio estudio;
     private String comentario;
+    private float nota;
 
     public int getId() {
         return id;
@@ -41,5 +42,13 @@ public class Comentario {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public float getNota() {
+        return nota;
+    }
+
+    public void setNota(float nota) {
+        this.nota = nota;
     }
 }

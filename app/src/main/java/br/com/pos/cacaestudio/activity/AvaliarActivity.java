@@ -15,6 +15,7 @@ import org.w3c.dom.Text;
 
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.modelo.dao.ComentarioDAO;
+import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
 import br.com.pos.cacaestudio.modelo.entity.Comentario;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 import br.com.pos.cacaestudio.modelo.entity.Usuario;
@@ -57,14 +58,17 @@ public class AvaliarActivity extends AppCompatActivity {
                         "texto: " + campoComentario.getText(),
                         Toast.LENGTH_LONG).show();
 
-                ComentarioDAO dao = new ComentarioDAO(AvaliarActivity.this);
+                ComentarioDAO comentarioDao = new ComentarioDAO(AvaliarActivity.this);
+                EstudioDAO estudioDAO = new EstudioDAO(AvaliarActivity.this);
                 comentario = new Comentario();
                 comentario.setComentario(campoComentario.getText().toString());
+                comentario.setNota(rate.getRating());
                 comentario.setEstudio(estudio);
                 comentario.setUsuario(usuario);
-                Log.e("metodo criar com.: ", ""+usuario.getNome());
-                dao.criarComentario(comentario);
-                dao.close();
+                comentarioDao.criarComentario(comentario);
+                comentarioDao.close();
+                estudioDAO.atualizarMedia(estudio, comentario, comentarioDao);
+                estudioDAO.close();
 
                 Intent intent = new Intent(AvaliarActivity.this, EstudioActivity.class);
                 intent.putExtra("estudio_selecionado", estudio);

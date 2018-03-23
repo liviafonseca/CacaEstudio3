@@ -14,7 +14,7 @@ public class Estudio implements Serializable {
     private String telefone;
     private double preco;
     private String img;
-    private double avaliacao;
+    private double media;
 
     public Estudio() {
 
@@ -79,12 +79,12 @@ public class Estudio implements Serializable {
         this.img = img;
     }
 
-    public double getAvaliacao() {
-        return avaliacao;
+    public double getMedia() {
+        return media;
     }
 
-    public void setAvaliacao(double avaliacao) {
-        this.avaliacao = avaliacao;
+    public void setMedia(double media) {
+        this.media = media;
     }
 
     @Override

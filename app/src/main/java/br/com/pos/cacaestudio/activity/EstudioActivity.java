@@ -13,9 +13,7 @@ import java.util.List;
 
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.ComentariosAdapater;
-import br.com.pos.cacaestudio.helper.EstudioHelper;
 import br.com.pos.cacaestudio.modelo.dao.ComentarioDAO;
-import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;
 import br.com.pos.cacaestudio.modelo.entity.Comentario;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 import br.com.pos.cacaestudio.modelo.entity.Usuario;
@@ -48,7 +46,7 @@ public class EstudioActivity extends AppCompatActivity {
         campoEndereco.setText(estudio.getEndereco());
         campoTelefone.setText(estudio.getTelefone());
         campoPreco.setText("R$"+(int)estudio.getPreco() + " / hora");
-        campoNota.setText(""+estudio.getAvaliacao());
+        campoNota.setText(""+estudio.getMedia());
 
         //Pegar lista de comentários
         ComentarioDAO comentarioDAO = new ComentarioDAO(this);

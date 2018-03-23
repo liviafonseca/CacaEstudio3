@@ -6,13 +6,13 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.pos.cacaestudio.helper.EstudioHelper;
+import br.com.pos.cacaestudio.modelo.entity.Comentario;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 /**
@@ -44,12 +44,13 @@ public class EstudioDAO extends SQLiteOpenHelper{
         db.execSQL(sql);
 
         sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
-                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
+                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, media FLOAT);";
         db.execSQL(sql);
 
         sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, id_usuario INTEGER REFERENCES usuario(id)," +
                 " id_estudio INTEGER REFERENCES estudio(id)," +
-                " comentario TEXT ); ";
+                " comentario TEXT," +
+                " nota FLOAT ); ";
 
         db.execSQL(sql);
     }
@@ -80,7 +81,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
         values.put("telefone",estudio.getTelefone());
         values.put("preco",estudio.getPreco());
         values.put("img_url",estudio.getImg());
-        values.put("avaliacao",estudio.getAvaliacao());
+        values.put("media",estudio.getMedia());
         getWritableDatabase().insert(TABELA, null, values);
     }
 
@@ -121,7 +122,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
                 estudio.setTelefone(cursor.getString(3));
                 estudio.setPreco(cursor.getDouble(4));
                 estudio.setImg(cursor.getString(5));
-                estudio.setAvaliacao(cursor.getDouble(6));
+                estudio.setMedia(cursor.getFloat(6));
 
                 lista.add(estudio);
             }
@@ -148,7 +149,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
                     estudio.setTelefone(cursor.getString(3));
                     estudio.setPreco(cursor.getDouble(4));
                     estudio.setImg(cursor.getString(5));
-                    estudio.setAvaliacao(cursor.getDouble(6));
+                    estudio.setMedia(cursor.getDouble(6));
                 }
             }catch(SQLException e){
                 Log.e(TAG, e.getMessage());
@@ -159,6 +160,35 @@ public class EstudioDAO extends SQLiteOpenHelper{
             return  estudio;
         }
 
+    public void atualizarMedia(Estudio estudio, Comentario novoComentario, ComentarioDAO comentarioDAO) {
+
+        List<Float> listaNotas =  comentarioDAO.getNotasPorEstudio(estudio);
+        listaNotas.add(novoComentario.getNota());
+        int somatoria = 0;
+
+        for (float nota: listaNotas) {
+            somatoria += nota;
+        }
+
+        float media = somatoria / listaNotas.size();
+        estudio.setMedia(media);
+        atualizarEstudio(estudio);
+    }
+
+    private void atualizarEstudio(Estudio estudio) {
+        ContentValues values = new ContentValues();
+
+        values.put("nome",estudio.getNome());
+        values.put("endereco",estudio.getEndereco());
+        values.put("telefone",estudio.getTelefone());
+        values.put("preco",estudio.getPreco());
+        values.put("img_url",estudio.getImg());
+        values.put("media",estudio.getMedia());
+
+        String[] args={String.valueOf(estudio.getId())};
+
+        getWritableDatabase().update(TABELA,values, "id=?", args );
+    }
 }
 
 

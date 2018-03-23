@@ -38,9 +38,10 @@ public class ComentarioDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql="CREATE TABLE "+TABELA+" (id INTEGER PRIMARY KEY, " +
-                "FOREIGN KEY (id_usuario, id_estudio) REFERENCES (usuario, estudio), " +
-                "comentario TEXT ) ";
+       String sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, id_usuario INTEGER REFERENCES usuario(id)," +
+                " id_estudio INTEGER REFERENCES estudio(id)," +
+                " comentario TEXT," +
+                " nota INTEGER ); ";
       //  db.execSQL(sql);
 
     }
@@ -59,6 +60,7 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         values.put("id_estudio", comentario.getEstudio().getId());
         values.put("comentario", comentario.getComentario());
         values.put("id_usuario", comentario.getUsuario().getId());
+        values.put("nota", comentario.getNota());
         getWritableDatabase().insert(TABELA, null, values);
     }
 
@@ -77,6 +79,7 @@ public class ComentarioDAO extends SQLiteOpenHelper {
                 comentario.setUsuario(usuario);
                 comentario.setEstudio(estudio);
                 comentario.setComentario(cursor.getString(3));
+                comentario.setNota(cursor.getInt(4));
 
                 lista.add(comentario);
             }
@@ -87,5 +90,22 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         }
 
         return lista;
+    }
+
+    public List<Float> getNotasPorEstudio(Estudio estudio) {
+        List<Float> listaNotas = new ArrayList<>();
+        String sql = "SELECT * FROM "+TABELA+ " WHERE id_estudio=?";
+        String[] args = {String.valueOf(estudio.getId())};
+        Cursor c = getReadableDatabase().rawQuery(sql, args);
+        try {
+            while (c.moveToNext()){
+                listaNotas.add(c.getFloat(4));
+            }
+        }catch (SQLException e){
+            Log.e(TAG, e.getMessage());
+        }finally {
+            c.close();
+        }
+        return listaNotas;
     }
 }
