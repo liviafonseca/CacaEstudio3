@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -83,36 +84,53 @@ public class EstudioDAO extends SQLiteOpenHelper{
         getWritableDatabase().insert(TABELA, null, values);
     }
 
+    //Este método faz o que deveria ser feito em um servidor Web.
+    //Este cria uma lista de Estúdios, de maneira estática.
     public List<Estudio> listarEstudios(){
 
+        List<Estudio> listaDeEstudios = new ArrayList<>();
+
+        //Verificar se tem dados ta tabela
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM "+TABELA, null);
+
+        if(cursor != null) {
+            cursor.moveToFirst();
+            if (cursor.getInt(0) == 0) { //tabela está vazia
+                popularTabela();
+                listaDeEstudios = preencherLista();
+            }
+            else { //Tabela não está vazia, apenas preenche a lista.
+                listaDeEstudios = preencherLista();
+            }
+        }
+
+        return listaDeEstudios;
+    }
+
+
+    private List<Estudio> preencherLista() {
         List<Estudio> lista = new ArrayList<>();
-
-        popularTabela();
-
         String sql="Select * from " + TABELA + " order by nome";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
-        if (cursor.getCount()>0) {
-            try {
-                while (cursor.moveToNext()) {
-                    Estudio estudio = new Estudio();
-                    estudio.setId((int) cursor.getLong(0));
-                    estudio.setNome(cursor.getString(1));
-                    estudio.setEndereco(cursor.getString(2));
-                    estudio.setTelefone(cursor.getString(3));
-                    estudio.setPreco(cursor.getDouble(4));
-                    estudio.setImg(cursor.getString(5));
-                    estudio.setAvaliacao(cursor.getDouble(6));
+        try {
+            while (cursor.moveToNext()) {
+                Estudio estudio = new Estudio();
+                estudio.setId((int) cursor.getLong(0));
+                estudio.setNome(cursor.getString(1));
+                estudio.setEndereco(cursor.getString(2));
+                estudio.setTelefone(cursor.getString(3));
+                estudio.setPreco(cursor.getDouble(4));
+                estudio.setImg(cursor.getString(5));
+                estudio.setAvaliacao(cursor.getDouble(6));
 
-                    lista.add(estudio);
-                }
-            } catch (SQLException e) {
-                Log.e(TAG, e.getMessage());
-            } finally {
-                cursor.close();
+                lista.add(estudio);
             }
-        }else {
-            popularTabela(); //popular os estudios, se tabela estiver vazia.
+        } catch (SQLException e) {
+            Log.e(TAG, e.getMessage());
+        } finally {
+            cursor.close();
         }
+
         return lista;
     }
 

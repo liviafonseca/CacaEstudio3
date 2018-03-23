@@ -30,6 +30,10 @@ public class EstudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estudio);
 
+        //Seta voltar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
+        getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
+
         estudio = (Estudio) getIntent().getSerializableExtra("estudio_selecionado");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         Log.e("user estudioActivity: ", ""+usuario.getNome());

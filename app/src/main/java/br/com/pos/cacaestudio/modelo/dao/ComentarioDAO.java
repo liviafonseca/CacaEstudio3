@@ -77,6 +77,8 @@ public class ComentarioDAO extends SQLiteOpenHelper {
                 comentario.setUsuario(usuario);
                 comentario.setEstudio(estudio);
                 comentario.setComentario(cursor.getString(3));
+
+                lista.add(comentario);
             }
         }catch (SQLException e){
             Log.e(TAG, e.getMessage());

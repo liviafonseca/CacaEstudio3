@@ -41,10 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //PARA TESTES
                 usuario = new Usuario(1, "Livia", "senha","999","e@c.com");
-                //chamar o DAO para criar as tabelas.
-                UsuarioDAO dao = new UsuarioDAO(LoginActivity.this);
-                Log.e("teste", ""+dao.teste());
-                dao.close();
+
 
 
                 Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText()))+

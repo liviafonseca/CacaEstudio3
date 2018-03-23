@@ -83,10 +83,5 @@ public class UsuarioDAO extends SQLiteOpenHelper {
        return  usuario;
     }
 
-    //apagar isso depois
-    public String teste(){
-        return "teste";
-    }
-
 
 }
