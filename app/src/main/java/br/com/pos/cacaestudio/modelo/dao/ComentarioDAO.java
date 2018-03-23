@@ -71,7 +71,7 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         try{
             while(cursor.moveToNext()){
                 Comentario comentario = new Comentario();
-                usuario = usuarioDAO.getUsuarioById(String.valueOf(cursor.getLong(1)));
+                usuario = usuarioDAO.getUsuarioById(usuario);  //AJEITAR ISSO AQUI DEPOIS. <--------
                 estudio = estudioDAO.getEstudioById(String.valueOf(cursor.getLong(2)));
                 comentario.setId((int) cursor.getLong(0));
                 comentario.setUsuario(usuario);

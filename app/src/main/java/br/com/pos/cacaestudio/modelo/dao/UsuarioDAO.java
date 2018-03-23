@@ -34,6 +34,10 @@ public class UsuarioDAO extends SQLiteOpenHelper {
                 "telefone TEXT, email TEXT);";
         db.execSQL(sql);
 
+        //cria 1 usuario para testes
+        sql = "Insert into usuario values('Livia','123','9999 9999','livia@email.com)";
+        db.execSQL(sql);
+
         sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
                 "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
         db.execSQL(sql);
@@ -52,7 +56,7 @@ public class UsuarioDAO extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void criarUsuario(Usuario usuario){
+    public void salvarUsuario(Usuario usuario){
         ContentValues values = new ContentValues();
         values.put("nome", usuario.getNome());
         values.put("senha", usuario.getSenha());
@@ -61,11 +65,15 @@ public class UsuarioDAO extends SQLiteOpenHelper {
         getWritableDatabase().insert(TABELA, null, values);
     }
 
-    public Usuario getUsuarioById(String id){
-        Usuario usuario = new Usuario();
-        String sql="SELECT * FROM usuario WHERE id=?";
-        String args[] = {id};
-       Cursor c = getReadableDatabase().rawQuery(sql,args);
+    public Usuario getUsuarioById(Usuario usuario){
+
+    /* ------------- AJEITAR ESSE CÓDIGO AQUI DEPOIS ---------- */
+
+   /*     String sql="SELECT * FROM "+TABELA+" WHERE id=?";
+        String args[] = {String.valueOf(usuario.getId())};
+        c = getReadableDatabase().rawQuery(sql,args);
+   */
+/*
        try{
            if(c.moveToFirst()){
                usuario.setId((int) c.getLong(0));
@@ -79,7 +87,7 @@ public class UsuarioDAO extends SQLiteOpenHelper {
        }finally {
            c.close();
        }
-
+        */
        return  usuario;
     }
 
