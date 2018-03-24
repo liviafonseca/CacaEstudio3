@@ -72,16 +72,18 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         Cursor cursor = getReadableDatabase().rawQuery(sql, args);
         try{
             while(cursor.moveToNext()){
-                Comentario comentario = new Comentario();
-                usuario = usuarioDAO.getUsuarioById(usuario);  //AJEITAR ISSO AQUI DEPOIS. <--------
-                estudio = estudioDAO.getEstudioById(String.valueOf(cursor.getLong(2)));
-                comentario.setId((int) cursor.getLong(0));
-                comentario.setUsuario(usuario);
-                comentario.setEstudio(estudio);
-                comentario.setComentario(cursor.getString(3));
-                comentario.setNota(cursor.getInt(4));
+                if(!cursor.getString(3).isEmpty()) {
+                    Comentario comentario = new Comentario();
+                    usuario = usuarioDAO.getUsuarioById(usuario);  //AJEITAR ISSO AQUI DEPOIS. <--------
+                    estudio = estudioDAO.getEstudioById(String.valueOf(cursor.getLong(2)));
+                    comentario.setId((int) cursor.getLong(0));
+                    comentario.setUsuario(usuario);
+                    comentario.setEstudio(estudio);
+                    comentario.setComentario(cursor.getString(3));
+                    comentario.setNota(cursor.getInt(4));
 
-                lista.add(comentario);
+                    lista.add(comentario);
+                }
             }
         }catch (SQLException e){
             Log.e(TAG, e.getMessage());
