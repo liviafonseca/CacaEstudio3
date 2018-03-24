@@ -10,7 +10,7 @@ public class Comentario {
     private Usuario usuario;
     private Estudio estudio;
     private String comentario;
-    private float nota;
+    private double nota;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Comentario {
         this.comentario = comentario;
     }
 
-    public float getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(float nota) {
+    public void setNota(double nota) {
         this.nota = nota;
     }
 }

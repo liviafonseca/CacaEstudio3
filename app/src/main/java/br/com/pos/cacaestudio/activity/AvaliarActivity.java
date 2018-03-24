@@ -11,8 +11,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.modelo.dao.ComentarioDAO;
 import br.com.pos.cacaestudio.modelo.dao.EstudioDAO;

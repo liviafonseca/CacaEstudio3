@@ -41,7 +41,7 @@ public class ComentarioDAO extends SQLiteOpenHelper {
        String sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, id_usuario INTEGER REFERENCES usuario(id)," +
                 " id_estudio INTEGER REFERENCES estudio(id)," +
                 " comentario TEXT," +
-                " nota INTEGER ); ";
+                " nota DOUBLE ); ";
       //  db.execSQL(sql);
 
     }
@@ -58,9 +58,9 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put("id_estudio", comentario.getEstudio().getId());
-        values.put("comentario", comentario.getComentario());
         values.put("id_usuario", comentario.getUsuario().getId());
         values.put("nota", comentario.getNota());
+        values.put("comentario", comentario.getComentario());
         getWritableDatabase().insert(TABELA, null, values);
     }
 
@@ -92,14 +92,14 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         return lista;
     }
 
-    public List<Float> getNotasPorEstudio(Estudio estudio) {
-        List<Float> listaNotas = new ArrayList<>();
+    public List<Double> getNotasPorEstudio(Estudio estudio) {
+        List<Double> listaNotas = new ArrayList<>();
         String sql = "SELECT * FROM "+TABELA+ " WHERE id_estudio=?";
         String[] args = {String.valueOf(estudio.getId())};
         Cursor c = getReadableDatabase().rawQuery(sql, args);
         try {
             while (c.moveToNext()){
-                listaNotas.add(c.getFloat(4));
+                listaNotas.add(c.getDouble(4));
             }
         }catch (SQLException e){
             Log.e(TAG, e.getMessage());

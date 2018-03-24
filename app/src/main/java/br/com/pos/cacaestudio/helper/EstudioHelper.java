@@ -59,7 +59,7 @@ public class EstudioHelper {
         estudio.setEndereco("R. 1, 21 - Jorge Teixeira, Manaus - AM");
         estudio.setTelefone("(92) 99372-7849");
         estudio.setPreco(45);
-        estudio.setMedia(4.5);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipNNJcDskrF2Xl8HdGeSEHgb8d2M8F5jsaHnoTAv=w90-h90-n-k-no");
         lista.add(estudio);
 
@@ -68,7 +68,7 @@ public class EstudioHelper {
         estudio.setEndereco("Rua A 13 (Raul De LEONY) N.1170 2 Entrando na Evangelica - Japiim 2, Manaus - AM, 69076-130");
         estudio.setTelefone("(92) 98193-8675");
         estudio.setPreco(60);
-        estudio.setMedia(5.3);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipN-QGMm1GUBkRQyQJKC2LY7FPlK0hjC5bQucpD1=w90-h90-n-k-no");
         lista.add(estudio);
 
@@ -77,7 +77,7 @@ public class EstudioHelper {
         estudio.setEndereco("R. um, 25 - Dom Pedro, Manaus - AM, 69040-080");
         estudio.setTelefone("(92) 91234-5625");
         estudio.setPreco(35);
-        estudio.setMedia(4.8);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipNV76GYSeGJcKGxnGxSO2nvzQg24D91l3tJ5qZq=w90-h90-n-k-no");
         lista.add(estudio);
 
@@ -86,7 +86,7 @@ public class EstudioHelper {
         estudio.setEndereco(" R. I, 32A - Compensa, Manaus - AM, 69035-736");
         estudio.setTelefone("(92) 99228-5624");
         estudio.setPreco(50);
-        estudio.setMedia(4.7);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipOtQzdfMsSFSOVzSbx2tpxH8pe5zEbO47KJ78Is=w90-h90-n-k-no");
         lista.add(estudio);
 
@@ -95,7 +95,7 @@ public class EstudioHelper {
         estudio.setEndereco("R. São Pedro, 50 - Petrópolis, Manaus - AM, 69079-420");
         estudio.setTelefone("(92)98751-5687");
         estudio.setPreco(45);
-        estudio.setMedia(4.8);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipNdJbVgzrRhD_w1XXBMCGJh2jsbq31PesASnBSq=w90-h90-n-k-no");
         lista.add(estudio);
 
@@ -104,7 +104,7 @@ public class EstudioHelper {
         estudio.setEndereco("R. do Castanho, 76 - São José Operário, Manaus - AM, 69085-110");
         estudio.setTelefone("(92) 99119-9730");
         estudio.setPreco(60);
-        estudio.setMedia(5.0);
+        estudio.setMedia(0);
         estudio.setImg("https://lh5.googleusercontent.com/p/AF1QipM-D50W2LIp0NAYODN3qaI8qOk7Y9C0ageqlnpe=w90-h90-n-k-no");
         lista.add(estudio);
 

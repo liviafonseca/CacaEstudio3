@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +45,14 @@ public class EstudioDAO extends SQLiteOpenHelper{
         db.execSQL(sql);
 
         sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
-                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, media FLOAT);";
+                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, media DOUBLE);";
         db.execSQL(sql);
 
-        sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, id_usuario INTEGER REFERENCES usuario(id)," +
+        sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, " +
+                " id_usuario INTEGER REFERENCES usuario(id)," +
                 " id_estudio INTEGER REFERENCES estudio(id)," +
                 " comentario TEXT," +
-                " nota FLOAT ); ";
+                " nota DOUBLE ); ";
 
         db.execSQL(sql);
     }
@@ -122,7 +124,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
                 estudio.setTelefone(cursor.getString(3));
                 estudio.setPreco(cursor.getDouble(4));
                 estudio.setImg(cursor.getString(5));
-                estudio.setMedia(cursor.getFloat(6));
+                estudio.setMedia(cursor.getDouble(6));
 
                 lista.add(estudio);
             }
@@ -162,15 +164,18 @@ public class EstudioDAO extends SQLiteOpenHelper{
 
     public void atualizarMedia(Estudio estudio, Comentario novoComentario, ComentarioDAO comentarioDAO) {
 
-        List<Float> listaNotas =  comentarioDAO.getNotasPorEstudio(estudio);
-        listaNotas.add(novoComentario.getNota());
-        int somatoria = 0;
+        List<Double> listaNotas =  comentarioDAO.getNotasPorEstudio(estudio);
+        double somatoria = 0;
 
-        for (float nota: listaNotas) {
+        for (double nota: listaNotas) {
             somatoria += nota;
         }
-
-        float media = somatoria / listaNotas.size();
+        DecimalFormat decimal = new DecimalFormat( "0.0" );
+        double media = Double.parseDouble(decimal.format(somatoria / listaNotas.size()));
+        Log.e("idEstudio", ""+estudio.getId());
+        Log.e("somatoria", ""+somatoria);
+        Log.e("total", ""+listaNotas.size());
+        Log.e("media",""+media);
         estudio.setMedia(media);
         atualizarEstudio(estudio);
     }
