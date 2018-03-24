@@ -73,21 +73,21 @@ public class EstudioActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = null;
-        switch (item.getItemId()){
-            case R.id.menu_mapa:
 
-                break;
-            case R.id.menu_agendar:
-                intent = new Intent(this,AgendarActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.menu_avaliar:
-                intent = new Intent(this, AvaliarActivity.class);
-                intent.putExtra("estudio", estudio);
-                intent.putExtra("usuario", usuario);
-                startActivity(intent);
-                 break;
+        if (item.getItemId() == R.id.menu_mapa ) {
+
         }
+        else if (item.getItemId() == R.id.menu_agendar) {
+            intent = new Intent(this,AgendarActivity.class);
+        }
+        else if(item.getItemId() == R.id.menu_avaliar) {
+            intent = new Intent(this, AvaliarActivity.class);
+        }
+
+        intent.putExtra("estudio", estudio);
+        intent.putExtra("usuario", usuario);
+        startActivity(intent);
+
         return super.onContextItemSelected(item);
     }
 

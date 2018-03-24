@@ -55,6 +55,13 @@ public class EstudioDAO extends SQLiteOpenHelper{
                 " nota DOUBLE ); ";
 
         db.execSQL(sql);
+
+        sql = "CREATE TABLE agenda (id INTEGER PRIMARY KEY, " +
+                " id_usuario INTEGER REFERENCES usuario(id)," +
+                " id_estudio INTEGER REFERENCES estudio(id)," +
+                " data DATE," +
+                " hora int ); ";
+        db.execSQL(sql);
     }
 
 

@@ -37,7 +37,7 @@ public class AvaliarActivity extends AppCompatActivity {
 
         estudio = (Estudio) getIntent().getSerializableExtra("estudio");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-        Log.e("user avaliarActivity: ", ""+usuario.getNome());
+
 
         TextView campoNome = findViewById(R.id.avaliar_nome);
         TextView campoEndereco = findViewById(R.id.avaliar_endereco);

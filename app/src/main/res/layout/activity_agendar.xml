@@ -13,6 +13,7 @@
         android:layout_marginRight="16dp">
 
         <CalendarView
+            android:id="@+id/calendario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0.5dp" />
@@ -22,6 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0.5dp"
             android:text="@string/text_hora_disp" />
+
+
 
         <CheckBox
             android:id="@+id/id_ck_08h"
