@@ -167,17 +167,15 @@ public class EstudioDAO extends SQLiteOpenHelper{
         List<Double> listaNotas =  comentarioDAO.getNotasPorEstudio(estudio);
         double somatoria = 0;
 
-        for (double nota: listaNotas) {
-            somatoria += nota;
+        if(listaNotas.size()>0) {
+            for (double nota : listaNotas) {
+                somatoria += nota;
+            }
+            DecimalFormat decimal = new DecimalFormat("0.0");
+            double media = Double.parseDouble(decimal.format(somatoria / listaNotas.size()));
+            estudio.setMedia(media);
+            atualizarEstudio(estudio);
         }
-        DecimalFormat decimal = new DecimalFormat( "0.0" );
-        double media = Double.parseDouble(decimal.format(somatoria / listaNotas.size()));
-        Log.e("idEstudio", ""+estudio.getId());
-        Log.e("somatoria", ""+somatoria);
-        Log.e("total", ""+listaNotas.size());
-        Log.e("media",""+media);
-        estudio.setMedia(media);
-        atualizarEstudio(estudio);
     }
 
     private void atualizarEstudio(Estudio estudio) {

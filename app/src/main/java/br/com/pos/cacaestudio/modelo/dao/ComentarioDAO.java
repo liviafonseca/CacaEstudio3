@@ -99,7 +99,9 @@ public class ComentarioDAO extends SQLiteOpenHelper {
         Cursor c = getReadableDatabase().rawQuery(sql, args);
         try {
             while (c.moveToNext()){
-                listaNotas.add(c.getDouble(4));
+                if(c.getDouble(4)!= 0) {
+                    listaNotas.add(c.getDouble(4));
+                }
             }
         }catch (SQLException e){
             Log.e(TAG, e.getMessage());
