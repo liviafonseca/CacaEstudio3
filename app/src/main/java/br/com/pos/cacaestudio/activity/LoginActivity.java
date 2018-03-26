@@ -28,8 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
         entrar = (Button)findViewById(R.id.id_entrar);
         cadastrar = (Button)findViewById(R.id.id_cadastrar);
         login = (EditText)findViewById(R.id.text_login);

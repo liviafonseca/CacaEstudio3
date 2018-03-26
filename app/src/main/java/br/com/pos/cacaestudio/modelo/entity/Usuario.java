@@ -18,6 +18,7 @@ public class Usuario implements Serializable {
     private String senha;
     private String email;
     private String telefone;
+    private String confSenha;
 
     public Usuario(){}
 
@@ -69,4 +70,6 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
     }
 
+    public void setConfSenha(String confSenha) { this.confSenha = confSenha;
+    }
 }
