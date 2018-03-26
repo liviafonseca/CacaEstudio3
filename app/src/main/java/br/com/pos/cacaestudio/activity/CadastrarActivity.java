@@ -9,9 +9,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.modelo.dao.UsuarioDAO;
@@ -26,8 +23,9 @@ public class CadastrarActivity extends AppCompatActivity {
     private EditText cadConfSenha;
     private Button salvar;
     private Usuario usuario;
+    //boolean ehValido;
 
-    private void validaCampos() {
+    private boolean validaCampos() {
 
         boolean res;
         String nome = cadNome.getText().toString();
@@ -53,11 +51,13 @@ public class CadastrarActivity extends AppCompatActivity {
             dlg.setMessage("Há campos inválidos ou em branco!");
             dlg.setNeutralButton("OK", null);
             dlg.show();
+
         }
 
+        return res;
     }
 
-    private void validaSenha() {
+    private boolean validaSenha() {
 
         String senha = cadSenha.getText().toString();
         String confSenha = cadConfSenha.getText().toString();
@@ -68,6 +68,9 @@ public class CadastrarActivity extends AppCompatActivity {
             dlg.setMessage("Senha não confere!");
             dlg.setNeutralButton("OK", null);
             dlg.show();
+            return false;
+        }else{
+            return true;
         }
 
     }
@@ -111,24 +114,29 @@ public class CadastrarActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 validaCampos();
-                validaSenha();
-                Intent intent = null;
-                String origem = (String) getIntent().getSerializableExtra("origem");
-                if (origem.equals("login")) {
-                    UsuarioDAO usuarioDao = new UsuarioDAO(CadastrarActivity.this);
-                    usuario = new Usuario();
-                    usuario.setNome(cadNome.getText().toString());
-                    usuario.setTelefone(cadTelefone.getText().toString());
-                    usuario.setEmail(cadEmail.getText().toString());
-                    usuario.setSenha(cadSenha.getText().toString());
-                    usuario.setConfSenha(cadConfSenha.getText().toString());
-                    usuarioDao.salvarUsuario(usuario);
-                    usuarioDao.close();
-                    intent = new Intent(CadastrarActivity.this, LoginActivity.class);
-                } else if (origem.equals("main")) {
-                    intent = new Intent(CadastrarActivity.this, ListaActivity.class);
+                if (!validaCampos()){
+                    validaSenha();
+                    if (validaSenha()){
+                        Intent intent = null;
+                        String origem = (String) getIntent().getSerializableExtra("origem");
+                        if (origem.equals("login")) {
+                            UsuarioDAO usuarioDao = new UsuarioDAO(CadastrarActivity.this);
+                            usuario = new Usuario();
+                            usuario.setNome(cadNome.getText().toString());
+                            usuario.setTelefone(cadTelefone.getText().toString());
+                            usuario.setEmail(cadEmail.getText().toString());
+                            usuario.setSenha(cadSenha.getText().toString());
+                            usuario.setConfSenha(cadConfSenha.getText().toString());
+                            usuarioDao.salvarUsuario(usuario);
+                            usuarioDao.close();
+                            intent = new Intent(CadastrarActivity.this, LoginActivity.class);
+                        } else if (origem.equals("main")) {
+                            intent = new Intent(CadastrarActivity.this, ListaActivity.class);
+                        }
+                        startActivity(intent);
+                    }
                 }
-                startActivity(intent);
+
             }
         });
     }
