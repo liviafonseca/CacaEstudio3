@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "946764768188",
+    "firebase_url": "https://cacaestudio-f9be1.firebaseio.com",
+    "project_id": "cacaestudio-f9be1",
+    "storage_bucket": "cacaestudio-f9be1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946764768188:android:1d4a266ee36a077b",
+        "android_client_info": {
+          "package_name": "br.com.pos.cacaestudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946764768188-57ua09r1emfquddn674mvds4mgrgvpgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.pos.cacaestudio",
+            "certificate_hash": "7b06e2711bb44eeb3cff37d0fc16212a3f36346b"
+          }
+        },
+        {
+          "client_id": "946764768188-n2mjj7vj54foa5udu52fo0vjl7r9hdnn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3ZExw65euwmrvHNwVkbzz3r6At35qYs4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946764768188-n2mjj7vj54foa5udu52fo0vjl7r9hdnn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
