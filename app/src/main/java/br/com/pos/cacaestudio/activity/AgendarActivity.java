@@ -62,7 +62,7 @@ public class AgendarActivity extends AppCompatActivity {
                     horario.add(11);
                 if(cb12.isChecked())
                     horario.add(12);
-
+                agenda = new Agenda();
                 agenda.setUsuario(usuario);
                 agenda.setEstudio(estudio);
                 Date dt = new Date(clView.getDate()); // converter Long em Date
