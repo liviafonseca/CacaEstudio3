@@ -88,6 +88,11 @@ public class AgendaDAO extends SQLiteOpenHelper {
         }
         return lista;
     }
+
+    public void excluirAgendamento(Agenda agenda) {
+        String[] args  = {String.valueOf(agenda.getId())};
+        getWritableDatabase().delete(TABELA, "id=?", args);
+    }
 }
 
 

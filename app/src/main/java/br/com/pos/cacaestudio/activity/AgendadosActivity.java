@@ -1,8 +1,12 @@
 package br.com.pos.cacaestudio.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,6 +26,12 @@ import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class AgendadosActivity extends AppCompatActivity {
 
+    private Agenda estudioAgendado;
+    private List<Agenda> agendas;
+    private AgendaDAO dao;
+    private Usuario usuario;
+    private ListView listaEstudiosView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,36 +42,71 @@ public class AgendadosActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle("Estúdios Agendados");     //Titulo para ser exibido na sua Action Bar em frente à seta
 
-        Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
-        AgendaDAO dao = new AgendaDAO(this);
-        List<Agenda> agendas = dao.listarAgendamento(usuario);
-        dao.close();
+       carregarLista();
 
-        //Adapter da Lista
-        ListView listaEstudiosView = findViewById(R.id.lista_estudios_agendados);
-        final AgendadosAdapter adapter = new AgendadosAdapter(this,agendas);
-        listaEstudiosView.setAdapter(adapter);
-
-
-
-        listaEstudiosView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //para menu de contexto
+        registerForContextMenu(listaEstudiosView);
+        listaEstudiosView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //View v = adapter.getView(position, view, parent);
-
-                ImageView lixeira = view.findViewById(R.id.agendados_lixeira);
-                lixeira.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(AgendadosActivity.this, "Esta ação no futuro fará com que" +
-                                " o agendamento seja cancelado", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                estudioAgendado = agendas.get(position);
+                return false;
             }
         });
 
+    }
+
+    //menu de contexto
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_estudio_agendado, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_agendamento_cancelar:
+                excluir(item.getItemId());
+                break;
+            case (R.id.menu_agendamento_ligar):
+                Toast.makeText(this, "Menu ligar clicado", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    private void excluir(final int id) {
+        new AlertDialog.Builder(this)
+                .setTitle("Cancelar Agendamento")
+                .setMessage("Tem certeza que deseja cancelar este agendamento?")
+                .setPositiveButton("sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dao = new AgendaDAO(AgendadosActivity.this);
+                        dao.excluirAgendamento(estudioAgendado);
+                        dao.close();
+                        carregarLista();
+                        estudioAgendado = null;
+                        Toast.makeText(AgendadosActivity.this, "Agendamento cancelado.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("não",null)
+                .show();
+    }
+
+    private void carregarLista() {
+        dao = new AgendaDAO(this);
+        agendas = dao.listarAgendamento(usuario);
+        dao.close();
+
+        //Adapter da Lista
+        listaEstudiosView = findViewById(R.id.lista_estudios_agendados);
+        final AgendadosAdapter adapter = new AgendadosAdapter(this,agendas);
+        listaEstudiosView.setAdapter(adapter);
     }
 
     //Para seta voltar

@@ -70,6 +70,8 @@
     <string name="menu_mapa">Ver no mapa</string>
     <string name="menu_agendar">Agendar estúdio</string>
     <string name="menu_avaliar">Avaliar estúdio</string>
+    <string name="menu_cancelar">Cancelar agendamento</string>
+    <string name="menu_ligar">Ligar para estúdio</string>
 
 
 </resources>

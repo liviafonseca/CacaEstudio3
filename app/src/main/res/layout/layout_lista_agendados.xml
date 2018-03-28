@@ -36,13 +36,5 @@
             android:text="horário"/>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/agendados_lixeira"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/recycle_bin"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        />
 
 </RelativeLayout>
