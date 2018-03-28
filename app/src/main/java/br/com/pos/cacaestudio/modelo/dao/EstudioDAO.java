@@ -33,7 +33,6 @@ public class EstudioDAO extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.e("entrou no metodo","entrou no metodo onCreate do EstudioDAO");
         String sql1 = "CREATE TABLE " + TABELA + " (id INTEGER PRIMARY KEY, nome TEXT, " +
                 "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
         //db.execSQL(sql);
@@ -59,8 +58,8 @@ public class EstudioDAO extends SQLiteOpenHelper{
         sql = "CREATE TABLE agenda (id INTEGER PRIMARY KEY, " +
                 " id_usuario INTEGER REFERENCES usuario(id)," +
                 " id_estudio INTEGER REFERENCES estudio(id)," +
-                " data DATE," +
-                " hora int ); ";
+                " data TEXT," +
+                " hora INTEGER ); ";
         db.execSQL(sql);
     }
 
@@ -113,7 +112,7 @@ public class EstudioDAO extends SQLiteOpenHelper{
                 listaDeEstudios = preencherLista();
             }
         }
-
+        cursor.close();
         return listaDeEstudios;
     }
 

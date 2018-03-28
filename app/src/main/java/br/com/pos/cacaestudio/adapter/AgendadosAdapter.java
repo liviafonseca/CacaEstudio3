@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import br.com.pos.cacaestudio.R;
+import br.com.pos.cacaestudio.modelo.entity.Agenda;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 /**
@@ -19,33 +22,34 @@ import br.com.pos.cacaestudio.modelo.entity.Estudio;
 public class AgendadosAdapter extends BaseAdapter {
 
     private final Context context;
-    private final List<Estudio> estudios;
+    private final List<Agenda> agendas;
 
-    public AgendadosAdapter(Context context, List<Estudio> estudios){
+    public AgendadosAdapter(Context context, List<Agenda> agendas){
         this.context = context;
-        this.estudios = estudios;
+        this.agendas = agendas;
     }
 
 
     @Override
     public int getCount() {
-        return estudios.size();
+        return agendas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return estudios.get(position);
+        return agendas.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return estudios.get(position).getId();
+        return agendas.get(position).getId();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Estudio estudio = estudios.get(position);
+        Agenda agenda = agendas.get(position);
+        Estudio estudio = agenda.getEstudio();
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -56,9 +60,11 @@ public class AgendadosAdapter extends BaseAdapter {
 
         TextView campoNome = view.findViewById(R.id.agendados_nome);
         TextView campoHora = view.findViewById(R.id.agendados_hr);
+        TextView campoHrMarcada = view.findViewById(R.id.hr_marcada);
 
         campoNome.setText(estudio.getNome());
-        campoHora.setText(" / hora");
+        campoHora.setText("R$" + estudio.getPreco() +" / hora");
+        campoHrMarcada.setText("Data: " + agenda.getData()+ " às " + agenda.getHora() + ":00");
 
         return view;
     }

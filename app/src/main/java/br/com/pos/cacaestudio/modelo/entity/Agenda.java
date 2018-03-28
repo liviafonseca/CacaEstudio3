@@ -11,7 +11,7 @@ public class Agenda {
     private Usuario usuario;
     private Estudio estudio;
     private int id;
-    private Date data;
+    private String data;
     private int hora;
 
     public Usuario getUsuario() {
@@ -38,11 +38,11 @@ public class Agenda {
         this.id = id;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

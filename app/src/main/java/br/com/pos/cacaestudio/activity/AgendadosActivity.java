@@ -15,7 +15,10 @@ import java.util.List;
 
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.AgendadosAdapter;
+import br.com.pos.cacaestudio.modelo.dao.AgendaDAO;
+import br.com.pos.cacaestudio.modelo.entity.Agenda;
 import br.com.pos.cacaestudio.modelo.entity.Estudio;
+import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class AgendadosActivity extends AppCompatActivity {
 
@@ -29,16 +32,15 @@ public class AgendadosActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle("Estúdios Agendados");     //Titulo para ser exibido na sua Action Bar em frente à seta
 
-        //Lista de Estúdios
-        Estudio estudio1 = new Estudio("Estúdio Tupira", "08:00 - 09:00");
-        Estudio estudio2 = new Estudio("Estúdio Sonora", "12:00 - 14:00");
-        List<Estudio> estudios = new ArrayList<Estudio>();
-        estudios.add(estudio1);
-        estudios.add(estudio2);
+        Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+
+        AgendaDAO dao = new AgendaDAO(this);
+        List<Agenda> agendas = dao.listarAgendamento(usuario);
+        dao.close();
 
         //Adapter da Lista
         ListView listaEstudiosView = findViewById(R.id.lista_estudios_agendados);
-        final AgendadosAdapter adapter = new AgendadosAdapter(this,estudios);
+        final AgendadosAdapter adapter = new AgendadosAdapter(this,agendas);
         listaEstudiosView.setAdapter(adapter);
 
 

@@ -26,6 +26,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="horário"/>
+        <TextView
+            android:id="@+id/hr_marcada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:layout_marginBottom="10dp"
             android:text="horário"/>
     </LinearLayout>
