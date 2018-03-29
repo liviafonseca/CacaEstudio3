@@ -1,6 +1,7 @@
 package br.com.pos.cacaestudio.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,6 +76,8 @@ public class EstudioActivity extends AppCompatActivity {
         Intent intent = null;
 
         if (item.getItemId() == R.id.menu_mapa ) {
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("geo:0,0?z=14&q="+estudio.getEndereco()));
 
         }
         else if (item.getItemId() == R.id.menu_agendar) {
