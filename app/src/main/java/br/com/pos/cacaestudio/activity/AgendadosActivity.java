@@ -2,6 +2,9 @@ package br.com.pos.cacaestudio.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.pos.cacaestudio.Manifest;
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.AgendadosAdapter;
 import br.com.pos.cacaestudio.modelo.dao.AgendaDAO;
@@ -30,6 +34,7 @@ public class AgendadosActivity extends AppCompatActivity {
     private List<Agenda> agendas;
     private AgendaDAO dao;
     private Usuario usuario;
+    private Estudio estudio;
     private ListView listaEstudiosView;
 
     @Override
@@ -69,16 +74,30 @@ public class AgendadosActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_agendamento_cancelar:
-                excluir(item.getItemId());
+                excluir();
                 break;
             case (R.id.menu_agendamento_ligar):
-                Toast.makeText(this, "Menu ligar clicado", Toast.LENGTH_SHORT).show();
+                estudio = estudioAgendado.getEstudio();
+                ligar(estudio);
                 break;
         }
         return super.onContextItemSelected(item);
     }
 
-    private void excluir(final int id) {
+    private void ligar(Estudio estudio) {
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    this, new String[]{android.Manifest.permission.CALL_PHONE}, 123);
+        } else {
+            Intent intentLigar = new Intent(Intent.ACTION_CALL);
+            intentLigar.setData(Uri.parse("tel:" + estudio.getTelefone()));
+            startActivity(intentLigar);
+        }
+    }
+
+
+    private void excluir() {
         new AlertDialog.Builder(this)
                 .setTitle("Cancelar Agendamento")
                 .setMessage("Tem certeza que deseja cancelar este agendamento?")

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.pos.cacaestudio">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,5 +32,7 @@
             android:label="@string/tela_estudio"/>
 
     </application>
+
+
 
 </manifest>
