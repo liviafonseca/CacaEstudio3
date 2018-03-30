@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,6 @@ public class CadastrarActivity extends AppCompatActivity {
     private EditText cadConfSenha;
     private Button salvar;
     private Usuario usuario;
-    //boolean ehValido;
 
     private boolean validaCampos() {
 
@@ -57,11 +57,17 @@ public class CadastrarActivity extends AppCompatActivity {
         return res;
     }
 
+    // Valida se senha inserida confere com a "confirmar Senha"
+
     private boolean validaSenha() {
+
 
         String senha = cadSenha.getText().toString();
         String confSenha = cadConfSenha.getText().toString();
-        if (isSenhaConfere(senha, confSenha)) {
+
+        if (senha.equals(confSenha)) {
+            return true;
+        }else{
             cadSenha.requestFocus();
             AlertDialog.Builder dlg = new AlertDialog.Builder(this);
             dlg.setTitle("Aviso");
@@ -69,8 +75,7 @@ public class CadastrarActivity extends AppCompatActivity {
             dlg.setNeutralButton("OK", null);
             dlg.show();
             return false;
-        }else{
-            return true;
+
         }
 
     }
@@ -85,12 +90,6 @@ public class CadastrarActivity extends AppCompatActivity {
     private boolean isEmailValido(String email) {
         boolean resultado = (!isCampoVazio(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
         return resultado;
-    }
-
-    // Valida se campo SENHA confere com o CONFIRMAR SENHA
-    private boolean isSenhaConfere(String senha, String confSenha) {
-        boolean nConfere = (senha != confSenha);
-        return nConfere;
     }
 
     @Override
@@ -113,9 +112,7 @@ public class CadastrarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                validaCampos();
                 if (!validaCampos()){
-                    validaSenha();
                     if (validaSenha()){
                         Intent intent = null;
                         String origem = (String) getIntent().getSerializableExtra("origem");

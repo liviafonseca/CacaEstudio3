@@ -72,4 +72,6 @@ public class Usuario implements Serializable {
 
     public void setConfSenha(String confSenha) { this.confSenha = confSenha;
     }
+
+
 }
