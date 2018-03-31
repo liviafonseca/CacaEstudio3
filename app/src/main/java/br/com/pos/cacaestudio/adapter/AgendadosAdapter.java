@@ -1,6 +1,7 @@
 package br.com.pos.cacaestudio.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +59,16 @@ public class AgendadosAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.layout_lista_agendados, parent, false);
         }
 
+
+        if(context.getResources().getConfiguration().orientation == 2){
+            TextView campoEndereco = view.findViewById(R.id.agendados_endereco);
+            campoEndereco.setText(estudio.getEndereco());
+        }
+
         TextView campoNome = view.findViewById(R.id.agendados_nome);
         TextView campoHora = view.findViewById(R.id.agendados_hr);
         TextView campoHrMarcada = view.findViewById(R.id.hr_marcada);
+
 
         campoNome.setText(estudio.getNome());
         campoHora.setText("R$" + estudio.getPreco() +" / hora");

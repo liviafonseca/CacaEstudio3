@@ -1,16 +1,25 @@
 package br.com.pos.cacaestudio.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import br.com.pos.cacaestudio.R;
 import br.com.pos.cacaestudio.adapter.ComentariosAdapater;
@@ -21,6 +30,7 @@ import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
 public class EstudioActivity extends AppCompatActivity {
 
+    private Handler handler = new Handler();
     private Estudio estudio;
     private Usuario usuario;
 
@@ -35,13 +45,38 @@ public class EstudioActivity extends AppCompatActivity {
 
         estudio = (Estudio) getIntent().getSerializableExtra("estudio_selecionado");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-        Log.e("user estudioActivity: ", ""+usuario.getNome());
 
+        final ImageView campoImg = findViewById(R.id.img_estudio);
         TextView campoNome = findViewById(R.id.estudio_nome);
         TextView campoEndereco = findViewById(R.id.estudio_endereco);
         TextView campoTelefone = findViewById(R.id.estudio_telefone);
         TextView campoPreco = findViewById(R.id.estudio_preco);
         TextView campoNota = findViewById(R.id.estudio_nota);
+
+
+        //PEGAR IMG DA INTERNET
+        new Thread() {
+            public void run() {
+                Bitmap img = null;
+                try {
+                    URL url = new URL(estudio.getImg());
+                    HttpsURLConnection conexao = (HttpsURLConnection) url.openConnection();
+                    InputStream input = conexao.getInputStream();
+                    img = BitmapFactory.decodeStream(input);
+                } catch (IOException e) {
+                    Log.e("erro", e.getMessage());
+                }
+                final Bitmap imgAux = img;
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        campoImg.setImageBitmap(imgAux);
+                    }
+                });
+            }
+        }.start();
+
+
 
         campoNome.setText(estudio.getNome());
         campoEndereco.setText(estudio.getEndereco());
