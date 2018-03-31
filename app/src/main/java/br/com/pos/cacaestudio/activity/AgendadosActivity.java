@@ -50,9 +50,7 @@ public class AgendadosActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle("Estúdios Agendados");     //Titulo para ser exibido na sua Action Bar em frente à seta
 
-      //  usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-
-       carregarLista();
+        carregarLista();
 
         //para menu de contexto
         registerForContextMenu(listaEstudiosView);
@@ -147,7 +145,10 @@ public class AgendadosActivity extends AppCompatActivity {
     //Back na navigationBar
     @Override
     public void onBackPressed(){ //Botão BACK padrão do android
-        startActivity(new Intent(this, ListaActivity.class)); //O efeito ao ser pressionado do botão (no caso abre a activity)
+        Intent intent = new Intent(this, ListaActivity.class);
+        intent.putExtra("usuario", usuario);
+        Log.e("user AgendadosActivity: ", "" + usuario.getNome());
+        startActivity(intent);// /O efeito ao ser pressionado do botão (no caso abre a activity)
         finishAffinity(); //Método para matar a activity e não deixa-lá indexada na pilhagem
         return;
     }

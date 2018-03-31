@@ -138,6 +138,9 @@ public class CadastrarActivity extends AppCompatActivity {
                             usuarioDao.atualizarUsuario(usuario);
                             usuarioDao.close();
                             intent = new Intent(CadastrarActivity.this, ListaActivity.class);
+                            intent.putExtra("usuario", usuario);
+                            Log.e("user cadastraActivity: ", "" + usuario.getNome());
+
                         }
                         startActivity(intent);
                     }
