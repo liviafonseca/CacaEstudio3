@@ -128,6 +128,15 @@ public class CadastrarActivity extends AppCompatActivity {
                             usuarioDao.close();
                             intent = new Intent(CadastrarActivity.this, LoginActivity.class);
                         } else if (origem.equals("main")) {
+                            UsuarioDAO usuarioDao = new UsuarioDAO(CadastrarActivity.this);
+                            usuario = new Usuario();
+                            usuario.setNome(cadNome.getText().toString());
+                            usuario.setTelefone(cadTelefone.getText().toString());
+                            usuario.setEmail(cadEmail.getText().toString());
+                            usuario.setSenha(cadSenha.getText().toString());
+                            usuario.setConfSenha(cadConfSenha.getText().toString());
+                            usuarioDao.atualizarUsuario(usuario);
+                            usuarioDao.close();
                             intent = new Intent(CadastrarActivity.this, ListaActivity.class);
                         }
                         startActivity(intent);

@@ -101,7 +101,21 @@ public class UsuarioDAO extends SQLiteOpenHelper {
         return isSenhaValida;
     }
 
-     public Usuario getUsuarioById(Usuario usuario){
+
+    public void atualizarUsuario(Usuario usuario) {
+        ContentValues values = new ContentValues();
+        values.put("nome", usuario.getNome());
+        values.put("senha", usuario.getSenha());
+        values.put("telefone", usuario.getTelefone());
+        values.put("email", usuario.getEmail());
+
+        String[] args={String.valueOf(usuario.getNome())};
+
+        getWritableDatabase().update(TABELA,values, "nome=?", args );
+    }
+
+
+    public Usuario getUsuarioById(Usuario usuario){
 
     /* ------------- AJEITAR ESSE CÓDIGO AQUI DEPOIS ---------- */
 
