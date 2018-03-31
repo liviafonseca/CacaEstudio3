@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.EditText;
 
 import br.com.pos.cacaestudio.modelo.entity.Usuario;
 
@@ -65,7 +66,38 @@ public class UsuarioDAO extends SQLiteOpenHelper {
         getWritableDatabase().insert(TABELA, null, values);
     }
 
-    public Usuario getUsuarioById(Usuario usuario){
+    //Query para validar se usuário e senha estão corretos.
+
+      public Boolean isSenhaValida (Usuario usuario){
+        //Usuario usuario = new usuario(UsuarioDAO.this);
+        Boolean isSenhaValida = false;
+        //usuario.setNome(login.getText().toString());
+          String senha = usuario.getSenha();
+        String sql="SELECT * FROM "+TABELA+" WHERE nome=?";
+        String args[] = {String.valueOf(usuario.getNome())};
+        Cursor c = getReadableDatabase().rawQuery(sql,args);
+          try{
+            if(c.moveToFirst()){
+                usuario.setId((int) c.getLong(0));
+                usuario.setNome(c.getString(1));
+                usuario.setSenha(c.getString(2));
+                usuario.setTelefone(c.getString(3));
+                usuario.setEmail(c.getString(4));
+                if (c.getCount()>0){
+                    if(senha.equals(c.getString(2))){
+                        isSenhaValida=true;
+                    }
+                }
+            }
+        }catch(SQLException e){
+            Log.e(TAG, e.getMessage());
+        }finally {
+            c.close();
+        }
+        return isSenhaValida;
+    }
+
+     public Usuario getUsuarioById(Usuario usuario){
 
     /* ------------- AJEITAR ESSE CÓDIGO AQUI DEPOIS ---------- */
 
@@ -86,10 +118,8 @@ public class UsuarioDAO extends SQLiteOpenHelper {
             Log.e(TAG, e.getMessage());
        }finally {
            c.close();
-       }
-        */
-       return  usuario;
-    }
-
+       }*/
+    return  usuario;
+ }
 
 }

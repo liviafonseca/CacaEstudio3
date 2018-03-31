@@ -1,8 +1,10 @@
 package br.com.pos.cacaestudio.activity;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,31 @@ public class LoginActivity extends AppCompatActivity {
     private EditText senha;
     private Usuario usuario;
 
+    private boolean validaLogin() {
+
+        boolean res;
+        String uNome = login.getText().toString();
+        String uSenha = senha.getText().toString();
+        if (res = isCampoVazio(uNome)) {
+            login.requestFocus();
+        }else if (res = isCampoVazio(uSenha)) {
+            senha.requestFocus();
+        }
+        if (res) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("Aviso");
+            dlg.setMessage("Campo Login ou Senha vazios!");
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        }
+        return res;
+     }
+
+    // Valida se campo veio vazio
+    private boolean isCampoVazio(String valor) {
+        boolean resultado = (TextUtils.isEmpty(valor) || valor.trim().isEmpty());
+        return resultado;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +63,31 @@ public class LoginActivity extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!validaLogin()) {
+                    UsuarioDAO usuarioDao = new UsuarioDAO(LoginActivity.this);
+                    usuario = new Usuario();
+                    usuario.setNome(login.getText().toString());
+                    usuario.setSenha(senha.getText().toString());
+                    if (!usuarioDao.isSenhaValida(usuario)) {
+                        AlertDialog.Builder dlg;
+                        dlg = new AlertDialog.Builder(LoginActivity.this);
+                        dlg.setTitle("Aviso");
+                        dlg.setMessage("Campo Login ou Senha inválidos!");
+                        dlg.setNeutralButton("OK", null);
+                        dlg.show();
 
-                //PARA TESTES
-                usuario = new Usuario(1, "Livia", "senha","999","e@c.com");
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText())) +
+                                        " logado com sucesso"
+                                , Toast.LENGTH_LONG).show();
+                        Intent it = new Intent(LoginActivity.this, ListaActivity.class);
+                        it.putExtra("usuario", usuario);
+                        Log.e("user loginActivity: ", "" + usuario.getNome());
+                        startActivity(it);
+                    }
 
-
-
-                Toast.makeText(LoginActivity.this, "Usuário: " + (String.valueOf(login.getText()))+
-                        " logado com sucesso"
-                        ,Toast.LENGTH_LONG).show();
-                Intent it = new Intent(LoginActivity.this, ListaActivity.class);
-                it.putExtra("usuario", usuario);
-                Log.e("user loginActivity: ", ""+usuario.getNome());
-                startActivity (it);
+                    usuarioDao.close();
+                }
             }
 
         });
