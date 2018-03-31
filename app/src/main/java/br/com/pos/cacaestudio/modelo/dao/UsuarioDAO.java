@@ -35,17 +35,23 @@ public class UsuarioDAO extends SQLiteOpenHelper {
                 "telefone TEXT, email TEXT);";
         db.execSQL(sql);
 
-        //cria 1 usuario para testes
-        sql = "Insert into usuario values('Livia','123','9999 9999','livia@email.com)";
-        db.execSQL(sql);
-
         sql = "CREATE TABLE " + "estudio" + " (id INTEGER PRIMARY KEY, nome TEXT, " +
-                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, avaliacao DOUBLE );";
+                "endereco TEXT, telefone TEXT, preco DOUBLE, img_url TEXT, media DOUBLE);";
         db.execSQL(sql);
 
         sql="CREATE TABLE "+"comentario"+" (id INTEGER PRIMARY KEY, " +
-                "FOREIGN KEY (id_usuario, id_estudio) REFERENCES (usuario, estudio), " +
-                "comentario TEXT ) ";
+                " id_usuario INTEGER REFERENCES usuario(id)," +
+                " id_estudio INTEGER REFERENCES estudio(id)," +
+                " comentario TEXT," +
+                " nota DOUBLE ); ";
+
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE agenda (id INTEGER PRIMARY KEY, " +
+                " id_usuario INTEGER REFERENCES usuario(id)," +
+                " id_estudio INTEGER REFERENCES estudio(id)," +
+                " data TEXT," +
+                " hora INTEGER ); ";
         db.execSQL(sql);
 
     }

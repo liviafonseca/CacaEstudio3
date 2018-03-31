@@ -56,6 +56,13 @@ public class EstudiosAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.estudio_item, parent, false);
         }
 
+        //cor para linhas pares
+        if(position%2 == 0){
+            view.setBackgroundColor(activity.getResources().getColor(R.color.linha_par));
+        } else {
+            view.setBackgroundColor(activity.getResources().getColor(R.color.linha_impar));
+        }
+
 
         TextView campoNome = view.findViewById(R.id.lista_estudios_nome);
         TextView campoEndereco = view.findViewById(R.id.lista_estudios_endereco);

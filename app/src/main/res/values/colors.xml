@@ -3,4 +3,6 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ec131e</color>
+    <color name="linha_par">#ffffff</color>
+    <color name="linha_impar">#e5e1b5b5</color>
 </resources>

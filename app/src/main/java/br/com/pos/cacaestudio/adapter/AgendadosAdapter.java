@@ -1,5 +1,6 @@
 package br.com.pos.cacaestudio.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,11 +23,11 @@ import br.com.pos.cacaestudio.modelo.entity.Estudio;
 
 public class AgendadosAdapter extends BaseAdapter {
 
-    private final Context context;
+    private final Activity activity;
     private final List<Agenda> agendas;
 
-    public AgendadosAdapter(Context context, List<Agenda> agendas){
-        this.context = context;
+    public AgendadosAdapter(Activity activity, List<Agenda> agendas){
+        this.activity = activity;
         this.agendas = agendas;
     }
 
@@ -52,15 +53,21 @@ public class AgendadosAdapter extends BaseAdapter {
         Agenda agenda = agendas.get(position);
         Estudio estudio = agenda.getEstudio();
 
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(activity);
 
         View view = convertView;
         if(view == null){
             view = inflater.inflate(R.layout.layout_lista_agendados, parent, false);
         }
 
+        //cor para linhas pares
+        if(position%2 == 0){
+            view.setBackgroundColor(activity.getResources().getColor(R.color.linha_par));
+        } else {
+            view.setBackgroundColor(activity.getResources().getColor(R.color.linha_impar));
+        }
 
-        if(context.getResources().getConfiguration().orientation == 2){
+        if(activity.getResources().getConfiguration().orientation == 2){
             TextView campoEndereco = view.findViewById(R.id.agendados_endereco);
             campoEndereco.setText(estudio.getEndereco());
         }
