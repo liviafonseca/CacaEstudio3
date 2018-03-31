@@ -52,9 +52,6 @@ public class AvaliarActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AvaliarActivity.this, "Nota: " + rate.getRating() +
-                        "texto: " + campoComentario.getText(),
-                        Toast.LENGTH_LONG).show();
 
                 ComentarioDAO comentarioDao = new ComentarioDAO(AvaliarActivity.this);
                 EstudioDAO estudioDAO = new EstudioDAO(AvaliarActivity.this);
