@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,13 +42,15 @@ public class AgendadosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agendados);
+        usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        Log.e("user estudioActivity: ", ""+usuario.getNome());
 
         //Seta voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle("Estúdios Agendados");     //Titulo para ser exibido na sua Action Bar em frente à seta
 
-        usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+      //  usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
        carregarLista();
 

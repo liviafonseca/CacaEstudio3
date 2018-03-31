@@ -69,10 +69,8 @@ public class UsuarioDAO extends SQLiteOpenHelper {
     //Query para validar se usuário e senha estão corretos.
 
       public Boolean isSenhaValida (Usuario usuario){
-        //Usuario usuario = new usuario(UsuarioDAO.this);
         Boolean isSenhaValida = false;
-        //usuario.setNome(login.getText().toString());
-          String senha = usuario.getSenha();
+        String senha = usuario.getSenha();
         String sql="SELECT * FROM "+TABELA+" WHERE nome=?";
         String args[] = {String.valueOf(usuario.getNome())};
         Cursor c = getReadableDatabase().rawQuery(sql,args);

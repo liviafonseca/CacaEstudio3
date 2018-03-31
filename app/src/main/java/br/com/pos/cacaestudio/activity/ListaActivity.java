@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class ListaActivity extends AppCompatActivity
         setContentView(R.layout.activity_lista);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+ //     Recuperando o usuario como parametro
+        Usuario usuario = (Usuario)getIntent().getSerializableExtra("usuario");
 
         //Lista de Estúdios
         EstudioDAO dao = new EstudioDAO(this);
@@ -75,6 +79,13 @@ public class ListaActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        View headView = navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)headView.findViewById(R.id.id_nav_user);
+        TextView nav_email = (TextView)headView.findViewById(R.id.id_nav_email);
+        nav_user.setText(usuario.getNome());
+        nav_email.setText(usuario.getEmail());
+
      }
 
 
@@ -94,6 +105,7 @@ public class ListaActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Usuario usuario = (Usuario)getIntent().getSerializableExtra("usuario");
 
         if (id == R.id.nav_dados) {
             Intent intent = new Intent(ListaActivity.this,CadastrarActivity.class);
@@ -101,6 +113,7 @@ public class ListaActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_agendados) {
             Intent intent = new Intent(ListaActivity.this, AgendadosActivity.class);
+            intent.putExtra("usuario", usuario);
             startActivity(intent);
         } else if (id == R.id.nav_sobre) {
             AboutDialog.showAbout(getSupportFragmentManager());

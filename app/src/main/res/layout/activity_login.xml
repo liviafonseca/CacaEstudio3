@@ -64,13 +64,4 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/id_log_google"
-        android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:src="@drawable/sign_in_google"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-
-        />
 </LinearLayout>
